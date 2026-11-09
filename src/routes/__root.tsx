@@ -143,7 +143,7 @@ function RootComponent() {
       <LanguageProvider>
       {!chromeless && <LoadingScreen />}
       {!chromeless && <Navbar />}
-      <main key={pathname} className={chromeless ? "" : "pt-16 animate-fade-in"}>
+      <main key={pathname} className={chromeless ? "" : "pt-16"}>
         <PageMotion initialLoader={!chromeless}>
           <Outlet />
         </PageMotion>
