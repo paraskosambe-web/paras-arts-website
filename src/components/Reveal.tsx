@@ -39,6 +39,7 @@ export function Reveal({ children, className = "", delay = 0, as: Tag = "div" }:
     <Tag
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       ref={ref as any}
+      data-revealed={shown}
       className={`${className} transition-[opacity,transform] duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none ${
         shown ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
       }`}

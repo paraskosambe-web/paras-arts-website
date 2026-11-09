@@ -152,7 +152,7 @@ function AnimatedHeadlineText({
 
         return (
           <span key={`${word}-${wordIndex}`}>
-                  {wordIndex > 0 && <span className="hero-word-space" aria-hidden="true" />}
+            {wordIndex > 0 && <span className="hero-word-space" aria-hidden="true" />}
             <span className="inline-block whitespace-nowrap">
               {Array.from(word).map((letter, index) => (
                 <span
@@ -177,7 +177,7 @@ function HomePage() {
   const open = lightbox !== null ? featured[lightbox] : null;
 
   return (
-    <div>
+    <div className="home-page">
       {/* HERO */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 -z-10">
@@ -187,15 +187,15 @@ function HomePage() {
             loading="eager"
             fetchPriority="high"
             decoding="async"
-            className="h-full w-full object-cover"
+            className="home-hero-image h-full w-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-[#121212]/70 via-[#121212]/60 to-[#121212]" />
-          <div className="absolute inset-0 bg-[radial-gradient(700px_400px_at_20%_30%,rgba(201,138,43,0.25),transparent_60%)]" />
+          <div className="home-hero-glow absolute inset-0 bg-[radial-gradient(700px_400px_at_20%_30%,rgba(201,138,43,0.25),transparent_60%)]" />
         </div>
 
         <div className="mx-auto max-w-7xl px-5 pt-14 pb-24 sm:px-6 sm:pt-10 sm:pb-32 lg:px-10 lg:pt-20 lg:pb-40">
-          <div className="max-w-4xl animate-fade-up">
-            <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-gold-light/30 bg-white/[0.03] px-3 py-1.5 text-[9px] tracking-[0.3em] uppercase text-gold-light backdrop-blur sm:mb-6 sm:gap-3 sm:px-4 sm:py-2 sm:text-[11px] sm:tracking-[0.35em]">
+          <div className="home-hero-content max-w-4xl">
+            <div className="home-hero-badge mb-5 inline-flex items-center gap-2 rounded-full border border-gold-light/30 bg-white/[0.03] px-3 py-1.5 text-[9px] tracking-[0.3em] uppercase text-gold-light backdrop-blur sm:mb-6 sm:gap-3 sm:px-4 sm:py-2 sm:text-[11px] sm:tracking-[0.35em]">
               <span className="h-1.5 w-1.5 rounded-full bg-gold animate-pulse" />
               {t("hero.badge")}
             </div>
@@ -220,10 +220,10 @@ function HomePage() {
                 />
               </span>
             </h1>
-            <p className="mt-5 max-w-xl text-[15px] leading-relaxed text-white/75 sm:mt-8 sm:text-lg">
+            <p className="home-hero-copy mt-5 max-w-xl text-[15px] leading-relaxed text-white/75 sm:mt-8 sm:text-lg">
               {t("hero.sub")}
             </p>
-            <div className="mt-7 flex flex-col items-stretch gap-3 sm:mt-10 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4">
+            <div className="home-hero-actions mt-7 flex flex-col items-stretch gap-3 sm:mt-10 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4">
               <Link to="/order" className="btn-gold justify-center">
                 {t("hero.cta1")} <ArrowRight size={16} />
               </Link>
@@ -232,9 +232,9 @@ function HomePage() {
               </Link>
             </div>
 
-            <div className="mt-10 grid max-w-lg grid-cols-3 gap-4 border-t border-white/10 pt-6 sm:mt-16 sm:gap-6 sm:pt-8">
+            <div className="home-hero-stats mt-10 grid max-w-lg grid-cols-3 gap-4 border-t border-white/10 pt-6 sm:mt-16 sm:gap-6 sm:pt-8">
               {[["500+", t("hero.stat1")], ["30+", t("hero.stat2")], ["7 yrs", t("hero.stat3")]].map(([n, l]) => (
-                <div key={l}>
+                <div key={l} className="home-stat">
                   <div className="font-display text-2xl text-gold-gradient sm:text-3xl">{n}</div>
                   <div className="mt-1 text-[9px] tracking-[0.2em] uppercase text-muted-foreground sm:text-xs sm:tracking-[0.25em]">{l}</div>
                 </div>
@@ -252,7 +252,7 @@ function HomePage() {
 
       {/* MARQUEE */}
       <div className="border-y border-white/5 bg-[#0f0f0f] py-6 overflow-hidden">
-        <div className="flex gap-16 whitespace-nowrap animate-marquee">
+        <div className="home-marquee flex gap-16 whitespace-nowrap animate-marquee">
           {[...Array(2)].flatMap((_, i) =>
             marqueeItems.map((mt, j) => (
               <span key={`${i}-${j}`} className="flex items-center gap-16 text-sm tracking-[0.35em] uppercase text-white/40">
@@ -265,7 +265,7 @@ function HomePage() {
 
       {/* FEATURED */}
       <section id="featured" className="mx-auto max-w-7xl px-6 py-28 lg:px-10 lg:py-36">
-        <div className="flex flex-wrap items-end justify-between gap-6">
+        <Reveal className="home-title-reveal flex flex-wrap items-end justify-between gap-6">
           <SectionHeader
             align="left"
             eyebrow={tr("Selected Works")}
@@ -275,7 +275,7 @@ function HomePage() {
           <Link to="/portfolio" className="btn-ghost-gold">
             {tr("Enter the Portfolio")} <ArrowUpRight size={16} />
           </Link>
-        </div>
+        </Reveal>
 
         <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {featured.map((item, i) => (
@@ -309,7 +309,7 @@ function HomePage() {
           aria-modal="true"
           aria-label={open.title}
           onClick={() => setLightbox(null)}
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 p-4 backdrop-blur-sm sm:p-8"
+          className="home-lightbox fixed inset-0 z-[100] flex items-center justify-center bg-black/90 p-4 backdrop-blur-sm sm:p-8"
         >
           <button
             type="button"
@@ -336,7 +336,7 @@ function HomePage() {
 
       {/* ABOUT — THE ARTIST */}
       <section className="mx-auto max-w-7xl px-6 py-28 lg:px-10">
-        <div className="max-w-3xl">
+        <Reveal className="home-title-reveal max-w-3xl">
           <div className="text-[11px] tracking-[0.4em] uppercase text-gold-light">{tr("The Artist")}</div>
           <h2 className="mt-4 font-display text-4xl leading-[1.05] md:text-6xl">
             Paras <span className="text-gold-gradient italic">Kosambe.</span>
@@ -344,18 +344,18 @@ function HomePage() {
           <p className="mt-6 text-lg leading-relaxed text-white/75">
             {tr("Paras Kosambe is a self-taught pencil artist and the founder of Paras Arts. What began in 2019 as a sketchbook habit became a practice devoted to one idea: that a handmade portrait can hold a memory better than any photograph.")}
           </p>
-        </div>
+        </Reveal>
 
         <div className="mt-16 grid items-stretch gap-10 lg:grid-cols-5">
-          <div className="overflow-hidden rounded-3xl gold-border lg:col-span-2">
+          <Reveal delay={80} className="overflow-hidden rounded-3xl gold-border lg:col-span-2">
             <img
               src={artistImg}
               alt="Paras Kosambe, founder and artist at Paras Arts"
               className="h-full w-full object-cover"
               loading="lazy"
             />
-          </div>
-          <div className="flex flex-col justify-center lg:col-span-3">
+          </Reveal>
+          <Reveal delay={140} className="home-title-reveal flex flex-col justify-center lg:col-span-3">
             <SectionHeader align="left" eyebrow={tr("In his words")} title={tr("I draw slowly, on purpose.")} />
             <p className="mt-6 leading-relaxed text-white/75">
               {tr("\"Every commission starts with sitting quietly with a photograph until I understand the person in it — the way light falls on a cheekbone, the tension in a smile, the story hiding in the eyes. Only then does the first line go down. From there it is thousands of small decisions, layered in graphite over many days.\"")}
@@ -364,11 +364,11 @@ function HomePage() {
               {tr("\"I still work alone, and I keep the studio small on purpose. I take a limited number of pieces each month so nothing is rushed and nothing is repeated. Every frame that leaves my desk carries a name I remember.\"")}
             </p>
             <div className="mt-8 font-display text-2xl text-gold-gradient">— Paras Kosambe</div>
-          </div>
+          </Reveal>
         </div>
 
         <div className="mt-20 grid gap-16 md:grid-cols-2">
-          <div>
+          <Reveal className="home-title-reveal">
             <SectionHeader align="left" eyebrow={tr("The Journey")} title={tr("From sketchbook to studio.")} />
             <ul className="mt-6 space-y-4 text-white/75">
               {journey.map(([k, v]) => (
@@ -378,8 +378,8 @@ function HomePage() {
                 </li>
               ))}
             </ul>
-          </div>
-          <div>
+          </Reveal>
+          <Reveal delay={100} className="home-title-reveal">
             <SectionHeader align="left" eyebrow={tr("His Hands")} title={tr("What sits on the desk.")} />
             <ul className="mt-6 space-y-4 text-white/75">
               {desk.map(([k, v]) => (
@@ -389,10 +389,10 @@ function HomePage() {
                 </li>
               ))}
             </ul>
-          </div>
+          </Reveal>
         </div>
 
-        <div className="mt-20 rounded-3xl gold-border p-10 md:p-16">
+        <Reveal className="mt-20 rounded-3xl gold-border p-10 md:p-16">
           <div className="grid gap-10 md:grid-cols-3">
             {[
               { n: 500, suffix: "+", l: "Portraits drawn by hand" },
@@ -409,86 +409,105 @@ function HomePage() {
               </div>
             ))}
           </div>
-        </div>
+        </Reveal>
 
 
-        <div className="mt-16 flex flex-wrap gap-4">
+        <Reveal delay={100} className="mt-16 flex flex-wrap gap-4">
           <Link to="/about" className="btn-gold">{tr("Read the full story")} <ArrowRight size={16} /></Link>
           <Link to="/portfolio" className="btn-ghost-gold">{tr("See the portfolio")}</Link>
-        </div>
+        </Reveal>
       </section>
 
       {/* SERVICES */}
       <section className="mx-auto max-w-7xl px-6 py-28 lg:px-10">
-        <SectionHeader
-          eyebrow={tr("What We Draw")}
-          title={tr("Signature commissions")}
-          description={tr("Four disciplines, one uncompromising standard.")}
-        />
+        <Reveal className="home-title-reveal">
+          <SectionHeader
+            eyebrow={tr("What We Draw")}
+            title={tr("Signature commissions")}
+            description={tr("Four disciplines, one uncompromising standard.")}
+          />
+        </Reveal>
         <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {services.map((s) => (
-            <div key={s.title} className="card-luxe p-8">
-              <div className="grid h-14 w-14 place-items-center rounded-2xl bg-gold-gradient text-[#121212]">
-                <s.icon size={22} />
+          {services.map((s, i) => (
+            <Reveal key={s.title} delay={i * 75} className="h-full">
+              <div className="card-luxe h-full p-8">
+                <div className="grid h-14 w-14 place-items-center rounded-2xl bg-gold-gradient text-[#121212]">
+                  <s.icon size={22} />
+                </div>
+                <h3 className="mt-6 font-display text-2xl">{tr(s.title)}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{tr(s.desc)}</p>
+                <div className="mt-6 flex items-center justify-between border-t border-white/5 pt-5">
+                  <span className="text-sm text-gold-light">{s.price}</span>
+                  <Link to="/services" className="text-xs tracking-[0.3em] uppercase text-white/60 hover:text-gold-light">
+                    {tr("Explore →")}
+                  </Link>
+                </div>
               </div>
-              <h3 className="mt-6 font-display text-2xl">{tr(s.title)}</h3>
-              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{tr(s.desc)}</p>
-              <div className="mt-6 flex items-center justify-between border-t border-white/5 pt-5">
-                <span className="text-sm text-gold-light">{s.price}</span>
-                <Link to="/services" className="text-xs tracking-[0.3em] uppercase text-white/60 hover:text-gold-light">
-                  {tr("Explore →")}
-                </Link>
-              </div>
-            </div>
+            </Reveal>
           ))}
         </div>
       </section>
 
       {/* WHY */}
       <section className="mx-auto max-w-7xl px-6 py-28 lg:px-10">
-        <SectionHeader eyebrow={tr("Why Paras Arts")} title={tr("Craft, not content.")} />
+        <Reveal className="home-title-reveal">
+          <SectionHeader eyebrow={tr("Why Paras Arts")} title={tr("Craft, not content.")} />
+        </Reveal>
         <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-          {why.map((w) => (
-            <div key={w.title} className="rounded-2xl border border-white/5 bg-white/[0.02] p-8 transition-colors hover:border-gold-light/30">
-              <w.icon className="text-gold" size={28} />
-              <h4 className="mt-5 font-display text-xl">{tr(w.title)}</h4>
-              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{tr(w.desc)}</p>
-            </div>
+          {why.map((w, i) => (
+            <Reveal key={w.title} delay={i * 70} className="h-full">
+              <div className="h-full rounded-2xl border border-white/5 bg-white/[0.02] p-8 transition-all duration-500 hover:-translate-y-1.5 hover:border-gold-light/30 hover:shadow-[0_20px_45px_-30px_rgba(201,138,43,0.5)]">
+                <w.icon className="text-gold" size={28} />
+                <h4 className="mt-5 font-display text-xl">{tr(w.title)}</h4>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{tr(w.desc)}</p>
+              </div>
+            </Reveal>
           ))}
         </div>
       </section>
 
       {/* HOW ORDERING WORKS */}
       <section className="mx-auto max-w-7xl px-6 py-28 lg:px-10">
-        <SectionHeader eyebrow={tr("The Process")} title={tr("How ordering works")} />
+        <Reveal className="home-title-reveal">
+          <SectionHeader eyebrow={tr("The Process")} title={tr("How ordering works")} />
+        </Reveal>
         <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
           {steps.map((s, i) => (
-            <div key={s.n} className="relative card-luxe p-8">
-              <div className="font-display text-6xl text-gold-gradient opacity-90">{s.n}</div>
-              <h4 className="mt-4 font-display text-2xl">{tr(s.t)}</h4>
-              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{tr(s.d)}</p>
-              {i < steps.length - 1 && (
-                <div className="absolute top-1/2 right-0 hidden h-px w-6 translate-x-full bg-gold-light/40 lg:block" />
-              )}
-            </div>
+            <Reveal key={s.n} delay={i * 85} className="h-full">
+              <div className="group relative h-full overflow-hidden card-luxe p-8">
+                <div className="absolute inset-x-0 top-0 h-px origin-left scale-x-0 bg-gold-gradient transition-transform duration-700 group-hover:scale-x-100" />
+                <div className="font-display text-6xl text-gold-gradient opacity-90">{s.n}</div>
+                <h4 className="mt-4 font-display text-2xl">{tr(s.t)}</h4>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{tr(s.d)}</p>
+                {i < steps.length - 1 && (
+                  <div className="absolute top-1/2 right-0 hidden h-px w-6 translate-x-full bg-gold-light/40 lg:block" />
+                )}
+              </div>
+            </Reveal>
           ))}
         </div>
       </section>
 
       {/* TESTIMONIALS */}
       <section className="mx-auto max-w-7xl px-6 py-28 lg:px-10">
-        <SectionHeader eyebrow={tr("Praise")} title={tr("Words from clients")} />
-        <TestimonialSlider items={testimonials} />
+        <Reveal className="home-title-reveal">
+          <SectionHeader eyebrow={tr("Praise")} title={tr("Words from clients")} />
+        </Reveal>
+        <Reveal delay={120}>
+          <TestimonialSlider items={testimonials} />
+        </Reveal>
       </section>
 
       {/* FAQ */}
       <section className="mx-auto max-w-3xl px-6 py-28 lg:px-10">
-        <SectionHeader eyebrow={tr("Answered")} title={tr("Frequently asked")} />
-        <div className="mt-12 divide-y divide-white/10 rounded-3xl border border-white/10 bg-white/[0.02]">
+        <Reveal className="home-title-reveal">
+          <SectionHeader eyebrow={tr("Answered")} title={tr("Frequently asked")} />
+        </Reveal>
+        <Reveal delay={100} className="mt-12 divide-y divide-white/10 rounded-3xl border border-white/10 bg-white/[0.02]">
           {faqs.map((f) => (
             <FAQItem key={f.q} q={f.q} a={f.a} />
           ))}
-        </div>
+        </Reveal>
         <div className="mt-10 text-center">
           <Link to="/faq" className="btn-ghost-gold">{tr("See all questions")}</Link>
         </div>
@@ -496,7 +515,7 @@ function HomePage() {
 
       {/* CTA */}
       <section className="mx-auto max-w-7xl px-6 pb-28 lg:px-10">
-        <div className="relative overflow-hidden rounded-[2rem] gold-border p-10 sm:p-16 lg:p-24">
+        <Reveal className="home-title-reveal relative overflow-hidden rounded-[2rem] gold-border p-10 sm:p-16 lg:p-24">
           <div className="absolute inset-0 -z-10 bg-[radial-gradient(600px_300px_at_80%_20%,rgba(201,138,43,0.25),transparent_60%)]" />
           <div className="max-w-3xl">
             <h2 className="font-display text-4xl leading-tight sm:text-5xl md:text-6xl">
@@ -511,7 +530,7 @@ function HomePage() {
               <Link to="/contact" className="btn-ghost-gold">{tr("Talk to the studio")}</Link>
             </div>
           </div>
-        </div>
+        </Reveal>
       </section>
     </div>
   );
@@ -546,7 +565,7 @@ function TestimonialSlider({ items }: { items: typeof testimonials }) {
     <div className="mt-14">
       <div className="mx-auto max-w-3xl text-center">
         <Quote className="mx-auto text-gold" size={40} />
-        <blockquote className="mt-8 font-display text-2xl leading-relaxed sm:text-3xl">
+        <blockquote key={i} className="home-quote mt-8 font-display text-2xl leading-relaxed sm:text-3xl">
           "{tr(t.text)}"
         </blockquote>
         <div className="mt-8 flex items-center justify-center gap-1 text-gold">
