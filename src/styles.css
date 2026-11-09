@@ -313,7 +313,7 @@
 }
 
 .home-page {
-  --home-hero-title-delay: 2050ms;
+  --home-hero-title-delay: 850ms;
 }
 
 .home-page[data-home-arrival="navigation"] {
@@ -638,7 +638,7 @@
     background: linear-gradient(180deg, rgba(15, 15, 15, 0.96), rgba(15, 15, 15, 0.86));
     box-shadow: 0 12px 36px rgba(0, 0, 0, 0.2);
     backdrop-filter: blur(18px);
-    animation: desktop-navbar-enter 650ms cubic-bezier(0.2, 0.75, 0.25, 1) 1.85s both;
+    animation: desktop-navbar-enter 650ms cubic-bezier(0.2, 0.75, 0.25, 1) 780ms both;
   }
 
   .site-navbar::after {
@@ -676,7 +676,7 @@
   .desktop-nav-brand {
     position: relative;
     z-index: 1;
-    animation: desktop-brand-enter 650ms 1.92s cubic-bezier(0.2, 0.75, 0.25, 1) both;
+    animation: desktop-brand-enter 650ms 850ms cubic-bezier(0.2, 0.75, 0.25, 1) both;
   }
 
   .desktop-nav-brand img {
@@ -751,7 +751,7 @@
     overflow: hidden;
     padding: 0.9rem 1.55rem;
     box-shadow: 0 8px 24px -10px rgba(201, 138, 43, 0.75), inset 0 1px rgba(255, 255, 255, 0.3);
-    animation: desktop-order-enter 650ms 2.18s cubic-bezier(0.2, 0.75, 0.25, 1) both;
+    animation: desktop-order-enter 650ms 1.05s cubic-bezier(0.2, 0.75, 0.25, 1) both;
     transition: transform 350ms cubic-bezier(0.2, 0.75, 0.25, 1), box-shadow 350ms ease, filter 350ms ease;
   }
 

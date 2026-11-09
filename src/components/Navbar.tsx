@@ -63,7 +63,7 @@ export function Navbar() {
                 key={l.to}
                 to={l.to}
                 aria-current={active ? "page" : undefined}
-                style={{ animationDelay: `${1850 + index * 55}ms` }}
+                style={{ animationDelay: `${850 + index * 45}ms` }}
                 className={`desktop-nav-link group relative whitespace-nowrap text-[12px] font-medium uppercase tracking-[0.14em] transition-colors ${
                   active
                     ? "text-gold-light"

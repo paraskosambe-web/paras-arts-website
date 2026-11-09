@@ -6,14 +6,14 @@ export function LoadingScreen() {
   const [done, setDone] = useState(false);
 
   useEffect(() => {
-    const timer = window.setTimeout(() => setDone(true), 1050);
+    const timer = window.setTimeout(() => setDone(true), 620);
     return () => window.clearTimeout(timer);
   }, []);
 
   return (
     <div
       aria-hidden="true"
-      className={`studio-loader pointer-events-none fixed inset-0 z-[200] grid place-items-center overflow-hidden transition-[opacity,visibility] duration-700 ${
+      className={`studio-loader pointer-events-none fixed inset-0 z-[200] grid place-items-center overflow-hidden transition-[opacity,visibility] duration-500 ${
         done ? "invisible opacity-0" : "visible opacity-100"
       }`}
     >
