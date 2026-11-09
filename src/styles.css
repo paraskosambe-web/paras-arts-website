@@ -378,6 +378,7 @@
   }
 
   .desktop-nav-inner {
+    position: relative;
     max-width: 1440px;
     height: 80px;
     padding-right: clamp(24px, 2.1vw, 34px);
@@ -405,10 +406,14 @@
   }
 
   .desktop-nav {
-    position: relative;
+    position: absolute;
+    top: 50%;
+    left: 50%;
     isolation: isolate;
     gap: clamp(11px, 0.95vw, 16px);
-    padding-left: clamp(12px, 1.25vw, 20px);
+    margin: 0;
+    padding-left: 0;
+    transform: translate(-50%, -50%);
   }
 
   .desktop-nav::before {
