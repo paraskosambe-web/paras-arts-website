@@ -30,7 +30,9 @@ export function PageMotion({
     const primaryTitles = root.querySelectorAll<HTMLElement>("h1");
     primaryTitles.forEach((title) => {
       title.classList.add("page-motion-primary-title");
-      title.style.animationDelay = firstPage && initialLoader ? "1.85s" : "45ms";
+      const titleDelay = firstPage && initialLoader ? "1.85s" : "45ms";
+      title.style.animationDelay = titleDelay;
+      title.style.setProperty("--page-title-delay", titleDelay);
     });
 
     const sectionTitles = root.querySelectorAll<HTMLElement>("h2");
