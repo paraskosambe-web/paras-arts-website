@@ -127,6 +127,9 @@ const desk: [string, string][] = [
   ["Delivery", "Foam-mounted, moisture-sealed, insured worldwide shipping"],
 ];
 
+// The loader stays up for 1,050 ms and fades for 700 ms; pause briefly after it clears.
+const HERO_ANIMATION_START_MS = 2_050;
+
 function AnimatedHeadlineText({
   text,
   delay = 0,
@@ -201,16 +204,19 @@ function HomePage() {
               className="font-display text-[2.35rem] leading-[1.08] sm:text-6xl md:text-7xl lg:text-[6rem] lg:leading-[1.04]"
             >
               <span aria-hidden="true">
-                <AnimatedHeadlineText text={t("hero.title1")} delay={60} />
+                <AnimatedHeadlineText text={t("hero.title1")} delay={HERO_ANIMATION_START_MS} />
                 <span className="hero-word-space" aria-hidden="true" />
                 <AnimatedHeadlineText
                   text={t("hero.titleItalic")}
-                  delay={60 + t("hero.title1").length * 14}
+                  delay={HERO_ANIMATION_START_MS + t("hero.title1").length * 14}
                   className="text-gold-gradient italic"
                 />
                 <AnimatedHeadlineText
                   text={t("hero.title2")}
-                  delay={60 + (t("hero.title1").length + t("hero.titleItalic").length) * 14}
+                  delay={
+                    HERO_ANIMATION_START_MS +
+                    (t("hero.title1").length + t("hero.titleItalic").length) * 14
+                  }
                 />
               </span>
             </h1>
