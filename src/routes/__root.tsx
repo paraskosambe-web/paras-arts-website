@@ -15,6 +15,7 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
 import { LoadingScreen } from "../components/LoadingScreen";
+import { PageMotion } from "../components/PageMotion";
 import { ScrollToTop } from "../components/ScrollToTop";
 import { AiAssistant } from "../components/AiAssistant";
 import { LanguageProvider, useLang } from "../lib/i18n";
@@ -143,7 +144,9 @@ function RootComponent() {
       {!chromeless && <LoadingScreen />}
       {!chromeless && <Navbar />}
       <main key={pathname} className={chromeless ? "" : "pt-16 animate-fade-in"}>
-        <Outlet />
+        <PageMotion initialLoader={!chromeless}>
+          <Outlet />
+        </PageMotion>
       </main>
       {!chromeless && <Footer />}
       {!chromeless && <ScrollToTop />}
