@@ -226,7 +226,7 @@ function ServicesPage() {
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-10 lg:py-24">
-      <Reveal className="max-w-4xl">
+      <Reveal className="mx-auto max-w-4xl">
         <SectionHeader
           eyebrow={tr("Services & Pricing")}
           title={tr("Every piece, handmade to last.")}

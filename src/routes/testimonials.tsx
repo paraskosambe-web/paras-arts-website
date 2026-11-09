@@ -127,7 +127,7 @@ function TestimonialsPage() {
 
   return (
     <div className="mx-auto max-w-7xl px-6 py-24 lg:px-10">
-      <Reveal className="max-w-4xl">
+      <Reveal className="mx-auto max-w-4xl">
         <SectionHeader
           eyebrow={tr("Praise")}
           title={tr("Kind words from collectors")}
