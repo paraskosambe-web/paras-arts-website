@@ -40,9 +40,12 @@ export function SectionHeader({
                 key={`${word}-${index}`}
                 aria-hidden="true"
                 className="about-name__word"
-                style={{ animationDelay: `${145 + index * 125}ms` }}
+                style={{
+                  animationDelay: `${145 + index * 125}ms`,
+                  marginRight: index < titleWords.length - 1 ? "0.22em" : undefined,
+                }}
               >
-                {word}{index < titleWords.length - 1 ? " " : ""}
+                {word}
               </span>
             ))
           : title}
