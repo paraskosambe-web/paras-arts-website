@@ -378,6 +378,19 @@
   transform-origin: 0 100%;
 }
 
+.page-motion-copy {
+  opacity: 0;
+  filter: blur(3px);
+  translate: 0 12px;
+  transition: opacity 720ms cubic-bezier(0.22, 1, 0.36, 1), filter 720ms cubic-bezier(0.22, 1, 0.36, 1), translate 720ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.page-motion-copy.page-motion-visible {
+  opacity: 1;
+  filter: blur(0);
+  translate: 0 0;
+}
+
 .page-motion-section-title.page-title-word-reveal {
   opacity: 1;
 }
@@ -596,6 +609,7 @@
 
   .page-motion-primary-title,
   .page-motion-section-title,
+  .page-motion-copy,
   .page-title-featured,
   .page-motion-reveal,
   .about-name__word,

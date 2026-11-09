@@ -28,10 +28,11 @@ export function PageMotion({
     const homePage = root.querySelector<HTMLElement>(".home-page");
     if (homePage) {
       homePage.dataset.homeArrival = firstPage ? "initial" : "navigation";
-      return;
     }
 
-    const primaryTitles = root.querySelectorAll<HTMLElement>("h1");
+    const primaryTitles: HTMLElement[] = homePage
+      ? []
+      : Array.from(root.querySelectorAll<HTMLElement>("h1"));
     primaryTitles.forEach((title) => {
       title.classList.add("page-motion-primary-title");
       const titleDelay = firstPage && initialLoader ? "1.85s" : "45ms";
@@ -39,12 +40,21 @@ export function PageMotion({
       title.style.setProperty("--page-title-delay", titleDelay);
     });
 
-    const sectionTitles = root.querySelectorAll<HTMLElement>("h2");
+    const sectionTitles: HTMLElement[] = homePage
+      ? []
+      : Array.from(root.querySelectorAll<HTMLElement>("h2, h3"));
     sectionTitles.forEach((title) => title.classList.add("page-motion-section-title"));
 
-    const revealTargets = root.querySelectorAll<HTMLElement>(
-      "section, article, form, .card-luxe, .gold-border",
-    );
+    const copyTargets = root.querySelectorAll<HTMLElement>("p, blockquote");
+    copyTargets.forEach((copy) => copy.classList.add("page-motion-copy"));
+
+    const revealTargets: HTMLElement[] = homePage
+      ? []
+      : Array.from(
+          root.querySelectorAll<HTMLElement>(
+            "section, article, form, .card-luxe, .gold-border",
+          ),
+        );
     const siblingIndexes = new Map<Element, number>();
     revealTargets.forEach((target) => {
       target.classList.add("page-motion-reveal");
@@ -56,6 +66,7 @@ export function PageMotion({
 
     if (typeof IntersectionObserver === "undefined") {
       sectionTitles.forEach((title) => title.classList.add("page-motion-visible"));
+      copyTargets.forEach((copy) => copy.classList.add("page-motion-visible"));
       revealTargets.forEach((target) => target.classList.add("page-motion-visible"));
       return;
     }
@@ -72,6 +83,7 @@ export function PageMotion({
     );
 
     sectionTitles.forEach((title) => observer.observe(title));
+    copyTargets.forEach((copy) => observer.observe(copy));
     revealTargets.forEach((target) => observer.observe(target));
 
     return () => observer.disconnect();
