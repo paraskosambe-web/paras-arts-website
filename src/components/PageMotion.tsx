@@ -24,8 +24,12 @@ export function PageMotion({
       }, 0);
     }
 
-    // The home route already has bespoke reveals and preloader timing.
-    if (root.querySelector(".home-page")) return;
+    // The home route has bespoke effects; only switch its timing after the first page load.
+    const homePage = root.querySelector<HTMLElement>(".home-page");
+    if (homePage) {
+      homePage.dataset.homeArrival = firstPage ? "initial" : "navigation";
+      return;
+    }
 
     const primaryTitles = root.querySelectorAll<HTMLElement>("h1");
     primaryTitles.forEach((title) => {

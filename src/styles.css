@@ -312,6 +312,14 @@
   transform-origin: 50% 100%;
 }
 
+.home-page {
+  --home-hero-title-delay: 2050ms;
+}
+
+.home-page[data-home-arrival="navigation"] {
+  --home-hero-title-delay: 280ms;
+}
+
 .home-hero-image {
   transform-origin: 52% 48%;
   animation: home-image-breathe 22s ease-in-out infinite alternate;
@@ -338,10 +346,10 @@
   animation: home-hero-copy-enter 750ms cubic-bezier(0.2, 0.75, 0.25, 1) both;
 }
 
-.home-hero-badge { animation-delay: 1.82s; }
-.home-hero-copy { animation-delay: 2.28s; }
-.home-hero-actions { animation-delay: 2.42s; }
-.home-hero-stats { animation-delay: 2.58s; }
+.home-hero-badge { animation-delay: calc(var(--home-hero-title-delay, 2050ms) - 230ms); }
+.home-hero-copy { animation-delay: calc(var(--home-hero-title-delay, 2050ms) + 230ms); }
+.home-hero-actions { animation-delay: calc(var(--home-hero-title-delay, 2050ms) + 370ms); }
+.home-hero-stats { animation-delay: calc(var(--home-hero-title-delay, 2050ms) + 530ms); }
 
 .home-lightbox {
   animation: home-lightbox-enter 300ms ease-out both;
