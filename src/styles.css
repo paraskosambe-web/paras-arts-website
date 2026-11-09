@@ -217,7 +217,12 @@
 .hero-letter {
   opacity: 0;
   transform-origin: 50% 100%;
-  animation: hero-letter-reveal 720ms cubic-bezier(0.2, 0.75, 0.25, 1) both;
+  animation: hero-letter-reveal 460ms cubic-bezier(0.2, 0.75, 0.25, 1) both;
+}
+
+.hero-word-space {
+  display: inline-block;
+  width: 0.24em;
 }
 
 .studio-loader {

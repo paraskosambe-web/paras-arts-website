@@ -136,26 +136,31 @@ function AnimatedHeadlineText({
   delay?: number;
   className?: string;
 }) {
+  const words = text.trim().split(/\s+/).filter(Boolean);
+  const gradient = className.includes("text-gold-gradient");
+  const textStyle = className.replace("text-gold-gradient", "").trim();
   let characterIndex = 0;
 
   return (
-    <span className={`inline ${className}`}>
-      {text.split(" ").map((word, wordIndex, words) => {
+    <span className={`inline ${textStyle}`}>
+      {words.map((word, wordIndex) => {
         const wordStart = characterIndex;
         characterIndex += word.length + 1;
 
         return (
-          <span key={`${word}-${wordIndex}`} className="inline-block whitespace-nowrap">
-            {Array.from(word).map((letter, index) => (
-              <span
-                key={`${letter}-${index}`}
-                className="hero-letter inline-block"
-                style={{ animationDelay: `${delay + (wordStart + index) * 28}ms` }}
-              >
-                {letter}
-              </span>
-            ))}
-            {wordIndex < words.length - 1 ? " " : null}
+          <span key={`${word}-${wordIndex}`}>
+                  {wordIndex > 0 && <span className="hero-word-space" aria-hidden="true" />}
+            <span className="inline-block whitespace-nowrap">
+              {Array.from(word).map((letter, index) => (
+                <span
+                  key={`${letter}-${index}`}
+                  className={`hero-letter inline-block${gradient ? " text-gold-light" : ""}`}
+                  style={{ animationDelay: `${delay + (wordStart + index) * 14}ms` }}
+                >
+                  {letter}
+                </span>
+              ))}
+            </span>
           </span>
         );
       })}
@@ -186,25 +191,26 @@ function HomePage() {
         </div>
 
         <div className="mx-auto max-w-7xl px-5 pt-14 pb-24 sm:px-6 sm:pt-10 sm:pb-32 lg:px-10 lg:pt-20 lg:pb-40">
-          <div className="max-w-3xl animate-fade-up">
+          <div className="max-w-4xl animate-fade-up">
             <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-gold-light/30 bg-white/[0.03] px-3 py-1.5 text-[9px] tracking-[0.3em] uppercase text-gold-light backdrop-blur sm:mb-6 sm:gap-3 sm:px-4 sm:py-2 sm:text-[11px] sm:tracking-[0.35em]">
               <span className="h-1.5 w-1.5 rounded-full bg-gold animate-pulse" />
               {t("hero.badge")}
             </div>
             <h1
               aria-label={`${t("hero.title1")} ${t("hero.titleItalic")}${t("hero.title2")}`}
-              className="font-display text-[2.35rem] leading-[1.06] sm:text-6xl md:text-7xl lg:text-[6.5rem] lg:leading-[1.02]"
+              className="font-display text-[2.35rem] leading-[1.08] sm:text-6xl md:text-7xl lg:text-[6rem] lg:leading-[1.04]"
             >
               <span aria-hidden="true">
-                <AnimatedHeadlineText text={t("hero.title1")} delay={100} />{" "}
+                <AnimatedHeadlineText text={t("hero.title1")} delay={60} />
+                <span className="hero-word-space" aria-hidden="true" />
                 <AnimatedHeadlineText
                   text={t("hero.titleItalic")}
-                  delay={100 + t("hero.title1").length * 28}
+                  delay={60 + t("hero.title1").length * 14}
                   className="text-gold-gradient italic"
                 />
                 <AnimatedHeadlineText
                   text={t("hero.title2")}
-                  delay={100 + (t("hero.title1").length + t("hero.titleItalic").length) * 28}
+                  delay={60 + (t("hero.title1").length + t("hero.titleItalic").length) * 14}
                 />
               </span>
             </h1>
