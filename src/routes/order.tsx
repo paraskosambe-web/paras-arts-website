@@ -5,6 +5,7 @@ import { useState } from "react";
 import { Check, Upload } from "lucide-react";
 
 import { SectionHeader } from "@/components/SectionHeader";
+import { Reveal } from "@/components/Reveal";
 
 import { api } from "@/lib/api";
 
@@ -939,13 +940,15 @@ function OrderPage() {
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-10 lg:py-24">
-      <SectionHeader
-        eyebrow={tr("Begin Your Commission")}
-        title={tr("Order a sketch")}
-        description={tr(
-          "Share your details. Every enquiry is reviewed personally by the studio."
-        )}
-      />
+      <Reveal className="max-w-4xl">
+        <SectionHeader
+          eyebrow={tr("Begin Your Commission")}
+          title={tr("Order a sketch")}
+          description={tr(
+            "Share your details. Every enquiry is reviewed personally by the studio."
+          )}
+        />
+      </Reveal>
 
       <form
         onSubmit={onSubmit}

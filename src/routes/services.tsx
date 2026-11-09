@@ -226,13 +226,15 @@ function ServicesPage() {
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-10 lg:py-24">
-      <SectionHeader
-        eyebrow={tr("Services & Pricing")}
-        title={tr("Every piece, handmade to last.")}
-        description={tr(
-          "Every service below is a private commission — never a print, never digital. Choose your page size and the starting price updates instantly."
-        )}
-      />
+      <Reveal className="max-w-4xl">
+        <SectionHeader
+          eyebrow={tr("Services & Pricing")}
+          title={tr("Every piece, handmade to last.")}
+          description={tr(
+            "Every service below is a private commission — never a print, never digital. Choose your page size and the starting price updates instantly."
+          )}
+        />
+      </Reveal>
 
       {/* PAGE SIZE SELECTOR */}
       <div className="mt-10 flex flex-col items-center gap-4 lg:mt-14">

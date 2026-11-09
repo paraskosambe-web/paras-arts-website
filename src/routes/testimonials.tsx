@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Star, Quote } from "lucide-react";
 import { SectionHeader } from "@/components/SectionHeader";
+import { Reveal } from "@/components/Reveal";
 import { useLang } from "@/lib/i18n";
 import { api, assetUrl } from "@/lib/api";
 
@@ -126,13 +127,15 @@ function TestimonialsPage() {
 
   return (
     <div className="mx-auto max-w-7xl px-6 py-24 lg:px-10">
-      <SectionHeader
-        eyebrow={tr("Praise")}
-        title={tr("Kind words from collectors")}
-        description={tr(
-          "Reviews from clients across three continents — each commission reflected back in their own words."
-        )}
-      />
+      <Reveal className="max-w-4xl">
+        <SectionHeader
+          eyebrow={tr("Praise")}
+          title={tr("Kind words from collectors")}
+          description={tr(
+            "Reviews from clients across three continents — each commission reflected back in their own words."
+          )}
+        />
+      </Reveal>
 
       <div className="mt-16 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {reviews.map((r, index) => (

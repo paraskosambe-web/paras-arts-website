@@ -270,13 +270,15 @@ function PortfolioPage() {
 
   return (
     <div className="mx-auto max-w-7xl px-6 py-24 lg:px-10">
-      <SectionHeader
-        eyebrow={tr("The Portfolio")}
-        title={tr("A private gallery of commissions")}
-        description={tr(
-          "Search, filter and step inside — each piece is a story handed to us in a photograph and returned in graphite."
-        )}
-      />
+      <Reveal className="max-w-4xl">
+        <SectionHeader
+          eyebrow={tr("The Portfolio")}
+          title={tr("A private gallery of commissions")}
+          description={tr(
+            "Search, filter and step inside — each piece is a story handed to us in a photograph and returned in graphite."
+          )}
+        />
+      </Reveal>
 
       {/* CONTROLS */}
       <div className="mt-14 space-y-4">

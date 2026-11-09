@@ -6,6 +6,7 @@ import { useState } from "react";
 import { Instagram, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 
 import { SectionHeader } from "@/components/SectionHeader";
+import { Reveal } from "@/components/Reveal";
 
 import { api } from "@/lib/api";
 
@@ -107,13 +108,15 @@ function ContactPage() {
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-10 lg:py-24">
-      <SectionHeader
-        eyebrow={tr("Talk to the Studio")}
-        title={tr("We reply personally.")}
-        description={tr(
-          "For commissions, press, wholesale or collaboration enquiries, please write below."
-        )}
-      />
+      <Reveal className="max-w-4xl">
+        <SectionHeader
+          eyebrow={tr("Talk to the Studio")}
+          title={tr("We reply personally.")}
+          description={tr(
+            "For commissions, press, wholesale or collaboration enquiries, please write below."
+          )}
+        />
+      </Reveal>
 
       <div className="mt-10 grid gap-8 lg:mt-16 lg:grid-cols-[1fr_1.2fr] lg:gap-10">
         <div className="space-y-4 sm:space-y-6">
