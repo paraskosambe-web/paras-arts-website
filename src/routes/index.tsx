@@ -127,6 +127,42 @@ const desk: [string, string][] = [
   ["Delivery", "Foam-mounted, moisture-sealed, insured worldwide shipping"],
 ];
 
+function AnimatedHeadlineText({
+  text,
+  delay = 0,
+  className = "",
+}: {
+  text: string;
+  delay?: number;
+  className?: string;
+}) {
+  let characterIndex = 0;
+
+  return (
+    <span className={`inline ${className}`}>
+      {text.split(" ").map((word, wordIndex, words) => {
+        const wordStart = characterIndex;
+        characterIndex += word.length + 1;
+
+        return (
+          <span key={`${word}-${wordIndex}`} className="inline-block whitespace-nowrap">
+            {Array.from(word).map((letter, index) => (
+              <span
+                key={`${letter}-${index}`}
+                className="hero-letter inline-block"
+                style={{ animationDelay: `${delay + (wordStart + index) * 28}ms` }}
+              >
+                {letter}
+              </span>
+            ))}
+            {wordIndex < words.length - 1 ? " " : null}
+          </span>
+        );
+      })}
+    </span>
+  );
+}
+
 function HomePage() {
   const { t, tr } = useLang();
   const [lightbox, setLightbox] = useState<number | null>(null);
@@ -155,10 +191,22 @@ function HomePage() {
               <span className="h-1.5 w-1.5 rounded-full bg-gold animate-pulse" />
               {t("hero.badge")}
             </div>
-            <h1 className="font-display text-[2.35rem] leading-[1.06] sm:text-6xl md:text-7xl lg:text-[6.5rem] lg:leading-[1.02]">
-              {t("hero.title1")}{" "}
-              <span className="text-gold-gradient italic">{t("hero.titleItalic")}</span>
-              {t("hero.title2")}
+            <h1
+              aria-label={`${t("hero.title1")} ${t("hero.titleItalic")}${t("hero.title2")}`}
+              className="font-display text-[2.35rem] leading-[1.06] sm:text-6xl md:text-7xl lg:text-[6.5rem] lg:leading-[1.02]"
+            >
+              <span aria-hidden="true">
+                <AnimatedHeadlineText text={t("hero.title1")} delay={100} />{" "}
+                <AnimatedHeadlineText
+                  text={t("hero.titleItalic")}
+                  delay={100 + t("hero.title1").length * 28}
+                  className="text-gold-gradient italic"
+                />
+                <AnimatedHeadlineText
+                  text={t("hero.title2")}
+                  delay={100 + (t("hero.title1").length + t("hero.titleItalic").length) * 28}
+                />
+              </span>
             </h1>
             <p className="mt-5 max-w-xl text-[15px] leading-relaxed text-white/75 sm:mt-8 sm:text-lg">
               {t("hero.sub")}
