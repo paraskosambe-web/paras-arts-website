@@ -108,10 +108,11 @@ function ContactPage() {
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-10 lg:py-24">
-      <Reveal className="max-w-4xl">
+      <Reveal className="mx-auto max-w-4xl">
         <SectionHeader
           eyebrow={tr("Talk to the Studio")}
           title={tr("We reply personally.")}
+          titleClassName="page-title-featured"
           description={tr(
             "For commissions, press, wholesale or collaboration enquiries, please write below."
           )}

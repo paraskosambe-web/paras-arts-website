@@ -1,11 +1,13 @@
 export function SectionHeader({
   eyebrow,
   title,
+  titleClassName = "",
   description,
   align = "center",
 }: {
   eyebrow?: string;
   title: string;
+  titleClassName?: string;
   description?: string;
   align?: "center" | "left";
 }) {
@@ -24,7 +26,7 @@ export function SectionHeader({
           <span className="h-px w-8 bg-gold-light/60" />
         </div>
       )}
-      <h2 className="font-display text-4xl leading-[1.05] sm:text-5xl md:text-6xl">
+      <h2 className={`font-display text-4xl leading-[1.05] sm:text-5xl md:text-6xl ${titleClassName}`}>
         {title}
       </h2>
       {description && (

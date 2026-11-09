@@ -230,6 +230,7 @@ function ServicesPage() {
         <SectionHeader
           eyebrow={tr("Services & Pricing")}
           title={tr("Every piece, handmade to last.")}
+          titleClassName="page-title-featured"
           description={tr(
             "Every service below is a private commission — never a print, never digital. Choose your page size and the starting price updates instantly."
           )}

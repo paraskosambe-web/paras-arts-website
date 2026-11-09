@@ -131,6 +131,7 @@ function TestimonialsPage() {
         <SectionHeader
           eyebrow={tr("Praise")}
           title={tr("Kind words from collectors")}
+          titleClassName="page-title-featured"
           description={tr(
             "Reviews from clients across three continents — each commission reflected back in their own words."
           )}

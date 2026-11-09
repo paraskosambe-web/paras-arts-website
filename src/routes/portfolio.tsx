@@ -274,6 +274,7 @@ function PortfolioPage() {
         <SectionHeader
           eyebrow={tr("The Portfolio")}
           title={tr("A private gallery of commissions")}
+          titleClassName="page-title-featured"
           description={tr(
             "Search, filter and step inside — each piece is a story handed to us in a photograph and returned in graphite."
           )}

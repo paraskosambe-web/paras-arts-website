@@ -148,6 +148,7 @@ function TrackPage() {
       <SectionHeader
         eyebrow={tr("Order Tracking")}
         title={tr("Where is my commission?")}
+        titleClassName="page-title-featured"
         description={tr(
           "Enter the email you ordered with and the order ID from your confirmation to see the live status."
         )}

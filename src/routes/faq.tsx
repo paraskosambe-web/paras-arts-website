@@ -196,6 +196,7 @@ function FAQPage() {
       <SectionHeader
         eyebrow={tr("Answered")}
         title={tr("Frequently asked questions")}
+        titleClassName="page-title-featured"
         description={tr(
           "Everything you'd like to know before commissioning your first piece."
         )}
