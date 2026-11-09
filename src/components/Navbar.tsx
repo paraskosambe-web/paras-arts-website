@@ -39,21 +39,21 @@ export function Navbar() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
+      className={`site-navbar fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
         scrolled
-          ? "border-b border-white/5 bg-[#121212]/85 backdrop-blur-xl"
-          : "bg-transparent"
+          ? "desktop-nav-scrolled border-b border-white/5 bg-[#121212]/85 backdrop-blur-xl"
+          : "desktop-nav-top bg-transparent"
       }`}
     >
-      <div className="mx-auto flex h-20 w-full max-w-7xl items-center px-4 sm:px-6 lg:px-8">
+      <div className="desktop-nav-inner mx-auto flex h-20 w-full max-w-7xl items-center px-4 sm:px-6 lg:px-8">
         {/* Logo */}
-        <div className="shrink-0">
+        <div className="desktop-nav-brand shrink-0">
           <Logo />
         </div>
 
         {/* Desktop Navigation */}
-        <nav className="mx-auto hidden items-center gap-5 xl:flex xl:pl-6 2xl:gap-7">
-          {links.map((l) => {
+        <nav className="desktop-nav mx-auto hidden items-center gap-5 xl:flex xl:pl-6 2xl:gap-7">
+          {links.map((l, index) => {
             const active =
               pathname === l.to ||
               (l.to !== "/" && pathname.startsWith(l.to));
@@ -62,7 +62,9 @@ export function Navbar() {
               <Link
                 key={l.to}
                 to={l.to}
-                className={`group relative whitespace-nowrap text-[12px] font-medium uppercase tracking-[0.14em] transition-colors ${
+                aria-current={active ? "page" : undefined}
+                style={{ animationDelay: `${1850 + index * 55}ms` }}
+                className={`desktop-nav-link group relative whitespace-nowrap text-[12px] font-medium uppercase tracking-[0.14em] transition-colors ${
                   active
                     ? "text-gold-light"
                     : "text-white/75 hover:text-gold-light"
@@ -86,14 +88,14 @@ export function Navbar() {
 
         {/* Right-side controls */}
         <div className="ml-auto flex shrink-0 items-center gap-2 sm:gap-3">
-          <LanguageSwitcher />
+          <LanguageSwitcher className="desktop-language" />
 
           {/* Desktop Order button */}
           <div className="hidden md:block">
             <Link
               to="/order"
               search={{}}
-              className="btn-gold whitespace-nowrap text-sm"
+              className="desktop-order-button btn-gold whitespace-nowrap text-sm"
             >
               {t("nav.order")}
             </Link>
